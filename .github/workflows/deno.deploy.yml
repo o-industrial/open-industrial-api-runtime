@@ -7,7 +7,7 @@ on:
 
 env:
   ENTRY_POINT: ./main.ts
-  PROJECT_NAME: open-industrial-core-runtime
+  PROJECT_NAME: open-industrial-api-runtime
 
 jobs:
   deploy:

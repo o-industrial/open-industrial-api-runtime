@@ -1,5 +1,5 @@
 {
-  "name": "@o-industrial/open-industrial-core-runtime",
+  "name": "@o-industrial/open-industrial-api-runtime",
   "version": "0.0.0",
   "exports": {
     ".": "./main.ts",
@@ -9,14 +9,14 @@
   "tasks": {
     "build": "deno task build:fmt && deno task build:lint && deno task publish:check && deno task test",
     "build:dev": "deno run -A dev.ts build",
-    "build:docker": "docker build --no-cache -t open-industrial-core-runtime -f DOCKERFILE .",
+    "build:docker": "docker build --no-cache -t open-industrial-api-runtime -f DOCKERFILE .",
     "build:fmt": "deno fmt",
     "build:lint": "deno lint",
     "build:main": "deno run -A main.ts build",
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "clean:docker": "docker stop open-industrial-core-runtime || true && docker rm open-industrial-core-runtime || true",
+    "clean:docker": "docker stop open-industrial-api-runtime || true && docker rm open-industrial-api-runtime || true",
     "deploy": "npx rimraf cov && deno task build && deno task test && npx ftm git",
-    "deploy:docker": "docker run --name open-industrial-core-runtime --network o-industrial-runtimes --env-file .env.docker -dp 127.0.0.1:5412:5412 open-industrial-core-runtime",
+    "deploy:docker": "docker run --name open-industrial-api-runtime --network o-industrial-runtimes --env-file .env.docker -dp 127.0.0.1:5412:5412 open-industrial-api-runtime",
     "dev": "deno run -A --watch=apps/,configs/,data/,routes/,src/,static/ dev.ts",
     "network:docker": "docker network create o-industrial-runtimes || true",
     "publish:check": "deno publish --dry-run --allow-dirty",
