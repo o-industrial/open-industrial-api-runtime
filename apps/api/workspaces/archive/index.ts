@@ -1,10 +1,9 @@
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
-import { parseEverythingAsCodeOIWorkspace } from '@o-industrial/common/eac';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
 
 export default {
-  async POST(req, ctx) {
+  async DELETE(_req, ctx) {
     const { Steward, WorkspaceLookup } = ctx.State;
 
     if (!Steward || !WorkspaceLookup) {
@@ -13,33 +12,22 @@ export default {
       });
     }
 
-    const snapshot = await req.json();
+    const deleteResp = await Steward.EaC.Delete(
+      {
+        EnterpriseLookup: WorkspaceLookup,
+      },
+      false,
+      30,
+    );
 
-    const { deletes, eac: wkspc } = snapshot;
-
-    parseEverythingAsCodeOIWorkspace(wkspc);
-
-    // Step 1: Apply deletions
-    const deleteResp = await Steward.EaC.Delete(deletes, false, 30);
-
-    let status = await waitForStatus(
+    const status = await waitForStatus(
       Steward,
       WorkspaceLookup,
       deleteResp.CommitID,
     );
 
     if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
-      const commitResp = await Steward.EaC.Commit(wkspc, 30);
-
-      status = await waitForStatus(
-        Steward,
-        WorkspaceLookup,
-        commitResp.CommitID,
-      );
-
-      if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
-        return Response.json(status);
-      }
+      return Response.json(status);
     }
 
     return Response.json(status, {
