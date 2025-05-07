@@ -39,6 +39,15 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
                 Hostname: 'host.docker.internal',
                 Port: config.Servers![0].port || 8000,
               },
+              'open-industrial.fathym.com': {
+                Hostname: 'open-industrial.fathym.com',
+              },
+              'www.openindustrial.co': {
+                Hostname: 'www.openindustrial.co',
+              },
+              'open-industrial-api-runtime.azurewebsites.net': {
+                Hostname: 'open-industrial-api-runtime.azurewebsites.net',
+              },
             },
             ModifierResolvers: {},
             ApplicationResolvers: {
