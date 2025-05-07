@@ -5,8 +5,8 @@ import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifiers';
 import { EaCAPIProcessor } from '@fathym/eac-applications/processors';
-import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac-dfs';
 import { EaCDenoKVDetails } from '@fathym/eac-deno-kv';
+import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
   constructor() {}
