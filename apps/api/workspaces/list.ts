@@ -3,7 +3,7 @@ import { OpenIndustrialAPIState } from '../../../src/state/OpenIndustrialAPIStat
 
 export default {
   async GET(_req, ctx) {
-    const userEaCs = await ctx.State.Steward!.EaC.ListForUser();
+    const userEaCs = await ctx.State.ParentSteward!.EaC.ListForUser();
 
     return Response.json(userEaCs);
   },

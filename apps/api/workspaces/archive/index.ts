@@ -16,7 +16,7 @@ export default {
       {
         EnterpriseLookup: WorkspaceLookup,
       },
-      false,
+      true,
       30,
     );
 

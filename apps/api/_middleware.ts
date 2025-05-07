@@ -14,9 +14,11 @@ export default (async (_req, ctx) => {
 
   ctx.State.EaCJWT = jwt.Token;
 
-  ctx.State.Steward = await loadEaCStewardSvc(ctx.State.EaCJWT);
+  if (ctx.State.EaCJWT) {
+    ctx.State.Steward = await loadEaCStewardSvc(ctx.State.EaCJWT);
 
-  ctx.State.EaC = await ctx.State.Steward.EaC.Get();
+    ctx.State.EaC = await ctx.State.Steward.EaC.Get();
+  }
 
   return ctx.Next();
 }) as EaCRuntimeHandler<OpenIndustrialAPIState>;

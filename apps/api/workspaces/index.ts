@@ -3,10 +3,8 @@ import { OpenIndustrialAPIState } from '../../../src/state/OpenIndustrialAPIStat
 import { EaCStatusProcessingTypes, waitForStatusWithFreshJwt } from '@fathym/eac/steward/status';
 
 export default {
-  async GET(_req, ctx) {
-    const eac = await ctx.State.Steward!.EaC.Get();
-
-    return Response.json(eac);
+  GET(_req, ctx) {
+    return Promise.resolve(Response.json(ctx.State.EaC ?? {}));
   },
 
   async POST(req, ctx) {
