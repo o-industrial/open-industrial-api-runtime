@@ -7,10 +7,11 @@ import { OpenIndustrialEaC, OpenIndustrialJWTPayload } from '@o-industrial/commo
  * Includes identity and shared runtime interfaces for execution-aware routing.
  */
 export type OpenIndustrialAPIState =
-  // & {
-  //   // /**
-  //   //  * NATS connection and structured impulse helpers.
-  //   //  */
-  //   // Impulses: OpenIndustrialImpulses;
-  // }
-  OpenIndustrialJWTPayload & EaCState<OpenIndustrialEaC>;
+  & OpenIndustrialJWTPayload
+  & EaCState<OpenIndustrialEaC>;
+// & {
+//   // /**
+//   //  * NATS connection and structured impulse helpers.
+//   //  */
+//   // Impulses: OpenIndustrialImpulses;
+// }
