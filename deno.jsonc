@@ -32,7 +32,7 @@
     "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.17",
     "@fathym/ioc": "jsr:@fathym/ioc@0",
     "@nats": "npm:nats@2.29.3",
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.4",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.8",
     // "@o-industrial/common/api": "../open-industrial-reference-architecture/src/api/.exports.ts",
     // "@o-industrial/common/eac": "../open-industrial-reference-architecture/src/eac/.exports.ts",
     // "@o-industrial/common/sop": "../open-industrial-reference-architecture/src/sop/.exports.ts",
