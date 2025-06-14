@@ -3,8 +3,8 @@ import { OpenIndustrialAPIState } from '../../../src/state/OpenIndustrialAPIStat
 
 export default {
   async GET(_req, ctx) {
-    const userEaCs = await ctx.State.ParentSteward!.EaC.ListForUser(ctx.State.Username);
+    const proposals = await ctx.State.ParentSteward!.EaC.ListForUser();
 
-    return Response.json(userEaCs);
+    return Response.json(proposals);
   },
 } as EaCRuntimeHandlers<OpenIndustrialAPIState>;

@@ -4,7 +4,7 @@ import { EaCRuntimeConfig, EaCRuntimePluginConfig } from '@fathym/eac/runtime/co
 import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifiers';
-import { EaCAPIProcessor } from '@fathym/eac-applications/processors';
+import { EaCAPIProcessor, EaCNATSProcessor } from '@fathym/eac-applications/processors';
 import { EaCDenoKVDetails } from '@fathym/eac-deno-kv';
 import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
 
@@ -73,6 +73,23 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
               Type: 'API',
               DFSLookup: 'local:apps/api',
             } as EaCAPIProcessor,
+          },
+          'nats-api': {
+            Details: {
+              Name: 'Local API',
+              Description: 'Default local APIs.',
+            },
+            ModifierResolvers: {
+              jwtValidate: {
+                Priority: 10000,
+              },
+            },
+            Processor: {
+              Type: 'NATS',
+              DFSLookup: 'local:apps/nats',
+              EventRoot: 'eac',
+              NATSURL: 'http://localhost:4222',
+            } as EaCNATSProcessor,
           },
         },
         DenoKVs: {
