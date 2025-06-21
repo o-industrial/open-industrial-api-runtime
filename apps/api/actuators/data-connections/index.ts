@@ -45,6 +45,14 @@ export default {
           model as EaCDataConnectionAsCode<EaCAzureIoTHubDataConnectionDetails>,
         EaC: eac,
         IoC: Runtime.IoC,
+        Secrets: {
+          Get(key: string) {
+            return Promise.resolve(Deno.env.get(key));
+          },
+          GetRequired(key: string) {
+            return Promise.resolve(Deno.env.get(key)!);
+          },
+        },
       });
 
       const output = await runtime.Run(ctx);
