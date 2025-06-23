@@ -1,5 +1,6 @@
 import type { EaCState } from '@fathym/eac-applications/steward/api';
-import { OpenIndustrialEaC, OpenIndustrialJWTPayload } from '@o-industrial/common/types';
+import { EverythingAsCodeOIWorkspace } from '@o-industrial/common/eac';
+import { OpenIndustrialJWTPayload } from '@o-industrial/common/types';
 // import { OpenIndustrialImpulses } from './OpenIndustrialImpulses.ts';
 
 /**
@@ -8,7 +9,7 @@ import { OpenIndustrialEaC, OpenIndustrialJWTPayload } from '@o-industrial/commo
  */
 export type OpenIndustrialAPIState =
   & OpenIndustrialJWTPayload
-  & EaCState<OpenIndustrialEaC>;
+  & EaCState<EverythingAsCodeOIWorkspace>;
 // & {
 //   // /**
 //   //  * NATS connection and structured impulse helpers.

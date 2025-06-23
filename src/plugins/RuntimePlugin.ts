@@ -1,12 +1,20 @@
 import { IoCContainer } from '@fathym/ioc';
 import { EverythingAsCode } from '@fathym/eac';
-import { EaCRuntimeConfig, EaCRuntimePluginConfig } from '@fathym/eac/runtime/config';
+import {
+  EaCRuntimeConfig,
+  EaCRuntimePluginConfig,
+} from '@fathym/eac/runtime/config';
 import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifiers';
-import { EaCAPIProcessor, EaCNATSProcessor } from '@fathym/eac-applications/processors';
+import {
+  EaCAPIProcessor,
+  EaCNATSProcessor,
+} from '@fathym/eac-applications/processors';
 import { EaCDenoKVDetails } from '@fathym/eac-deno-kv';
 import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
+import { OpenIndustrialGlobalDataIngestPlugin } from '@o-industrial/common/runtimes';
+import { DefaultOIAPIProcessorHandlerResolver } from './DefaultOIAPIProcessorHandlerResolver.ts';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
   constructor() {}
@@ -16,7 +24,15 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
       EverythingAsCode & EverythingAsCodeApplications
     > = {
       Name: RuntimePlugin.name,
-      Plugins: [],
+      Plugins: [
+        new OpenIndustrialGlobalDataIngestPlugin(
+          'core',
+          Deno.env.get('NATS_SERVER')!,
+          Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_CONNECTION_STRING')!,
+          Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_NAME')!,
+          Deno.env.get('AZURE_IOT_HUB_CONNECTION_STRING')!
+        ),
+      ],
       IoC: new IoCContainer(),
       EaC: {
         Projects: {
@@ -97,8 +113,10 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             Details: {
               Type: 'DenoKV',
               Name: 'OI',
-              Description: 'The Deno KV database to use for open industrial web',
-              DenoKVPath: Deno.env.get('OPEN_INDUSTRIAL_DENO_KV_PATH') || undefined,
+              Description:
+                'The Deno KV database to use for open industrial web',
+              DenoKVPath:
+                Deno.env.get('OPEN_INDUSTRIAL_DENO_KV_PATH') || undefined,
             } as EaCDenoKVDetails,
           },
         },
@@ -128,6 +146,10 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         },
       },
     };
+
+    pluginConfig.IoC!.Register(DefaultOIAPIProcessorHandlerResolver, {
+      Type: pluginConfig.IoC!.Symbol('ProcessorHandlerResolver'),
+    });
 
     return Promise.resolve(pluginConfig);
   }

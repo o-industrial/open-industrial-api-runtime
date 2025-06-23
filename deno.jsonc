@@ -52,7 +52,6 @@
     "@o-industrial/common/fluent": "../open-industrial-reference-architecture/src/fluent/_/.exports.ts",
     "@o-industrial/common/fluent/connections": "../open-industrial-reference-architecture/src/fluent/connections/.exports.ts",
     "@o-industrial/common/fluent/packs": "../open-industrial-reference-architecture/src/fluent/packs/.exports.ts",
-    "@o-industrial/common/fluent/runtimes": "../open-industrial-reference-architecture/src/fluent/runtimes/.exports.ts",
     "@o-industrial/common/fluent/simulators": "../open-industrial-reference-architecture/src/fluent/simulators/.exports.ts",
     "@o-industrial/common/fluent/steps": "../open-industrial-reference-architecture/src/fluent/steps/.exports.ts",
     "@o-industrial/common/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
@@ -61,6 +60,8 @@
     
     "@o-industrial/common/packs/azure-iot": "../open-industrial-reference-architecture/src/packs/azure-iot/.pack.ts",
     "@o-industrial/common/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
+
+    "@o-industrial/common/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
 
     "@std/assert": "jsr:@std/assert@1.0.6",
     "@std/log": "jsr:@std/log@0.224.6"
