@@ -1,10 +1,10 @@
 
 import { DefaultProcessorHandlerResolver, ProcessorHandlerResolver } from '@fathym/eac-applications/runtime/processors';
-import { EverythingAsCodeApplications } from '../../../open-industrial-reference-architecture/src/eac/.deps.ts';
 import { IoCContainer } from '@fathym/ioc';
 import { EaCApplicationProcessorConfig } from '@fathym/eac-applications/processors';
 import { EverythingAsCode } from '@fathym/eac';
 import { DefaultOpenIndustrialProcessorHandlerResolver } from '@o-industrial/common/runtimes';
+import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 
 export class DefaultOIAPIProcessorHandlerResolver
   implements ProcessorHandlerResolver
