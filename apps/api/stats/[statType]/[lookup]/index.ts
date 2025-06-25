@@ -40,7 +40,7 @@ export async function resolveStatRuntime(
   statType: string,
   lookup: string,
   eac: EverythingAsCodeOIWorkspace,
-  ioc: IoCContainer
+  ioc: IoCContainer,
 ): Promise<RuntimeStats> {
   try {
     switch (statType) {
@@ -55,8 +55,7 @@ export async function resolveStatRuntime(
 
         const ctx = await runtime.ConfigureContext({
           Lookup: lookup,
-          AsCode:
-            conn as EaCDataConnectionAsCode<EaCAzureIoTHubDataConnectionDetails>,
+          AsCode: conn as EaCDataConnectionAsCode<EaCAzureIoTHubDataConnectionDetails>,
           EaC: eac,
           IoC: ioc,
         });

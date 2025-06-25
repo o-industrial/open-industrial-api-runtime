@@ -24,7 +24,7 @@ export default {
       const model = handlerRequest.Model as EaCDataConnectionAsCode;
 
       logger.Package.debug(
-        `Running actuator for IoT data connection '${lookup}'`
+        `Running actuator for IoT data connection '${lookup}'`,
       );
 
       // Safety check: ensure it's a valid Azure IoT Hub connection
@@ -41,8 +41,7 @@ export default {
 
       const ctx = await runtime.ConfigureContext({
         Lookup: lookup,
-        AsCode:
-          model as EaCDataConnectionAsCode<EaCAzureIoTHubDataConnectionDetails>,
+        AsCode: model as EaCDataConnectionAsCode<EaCAzureIoTHubDataConnectionDetails>,
         EaC: eac,
         IoC: Runtime.IoC,
         Secrets: {

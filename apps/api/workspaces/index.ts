@@ -1,8 +1,5 @@
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
-import {
-  EaCStatusProcessingTypes,
-  waitForStatusWithFreshJwt,
-} from '@fathym/eac/steward/status';
+import { EaCStatusProcessingTypes, waitForStatusWithFreshJwt } from '@fathym/eac/steward/status';
 import { OpenIndustrialAPIState } from '../../../src/state/OpenIndustrialAPIState.ts';
 
 export default {
@@ -16,14 +13,14 @@ export default {
     const createResp = await ctx.State.ParentSteward!.EaC.Create(
       { ...eac, ActuatorJWT: ctx.State.JWT },
       ctx.State.Username,
-      60
+      60,
     );
 
     const status = await waitForStatusWithFreshJwt(
       ctx.State.ParentSteward!,
       createResp.EnterpriseLookup,
       createResp.CommitID,
-      ctx.State.Username
+      ctx.State.Username,
     );
 
     if (status.Processing !== EaCStatusProcessingTypes.COMPLETE) {

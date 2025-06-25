@@ -1,8 +1,5 @@
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
-import {
-  EaCStatusProcessingTypes,
-  waitForStatus,
-} from '@fathym/eac/steward/status';
+import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
 import { parseEverythingAsCodeOIWorkspace } from '@o-industrial/common/eac';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
 
@@ -28,19 +25,19 @@ export default {
     let status = await waitForStatus(
       Steward,
       WorkspaceLookup,
-      deleteResp.CommitID
+      deleteResp.CommitID,
     );
 
     if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
       const commitResp = await Steward.EaC.Commit(
         { ...wkspc, ActuatorJWT: ctx.State.JWT },
-        30
+        30,
       );
 
       status = await waitForStatus(
         Steward,
         WorkspaceLookup,
-        commitResp.CommitID
+        commitResp.CommitID,
       );
 
       if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
