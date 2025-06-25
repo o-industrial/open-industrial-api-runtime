@@ -26,13 +26,13 @@
     "version": "deno run -A jsr:@fathym/common@0/build/version"
   },
   "imports": {
-    "@fathym/common": "jsr:@fathym/common@0",
-    "@fathym/eac": "jsr:@fathym/eac@0.2.111",
-    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.150",
+    "@fathym/common": "jsr:@fathym/common@0.2.264",
+    "@fathym/eac": "jsr:@fathym/eac@0.2.112",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.152",
     "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.17",
     "@fathym/ioc": "jsr:@fathym/ioc@0",
     "@nats": "npm:nats@2.29.3",
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.35",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.38",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",

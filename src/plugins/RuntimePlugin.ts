@@ -22,6 +22,7 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         new OpenIndustrialGlobalDataIngestPlugin(
           'core',
           Deno.env.get('NATS_SERVER')!,
+          Deno.env.get('NATS_TOKEN')!,
           Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_CONNECTION_STRING')!,
           Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_NAME')!,
           Deno.env.get('AZURE_IOT_HUB_CONNECTION_STRING')!,
