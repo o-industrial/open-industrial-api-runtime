@@ -1,15 +1,15 @@
-import {
-  AzureIoTHubDataConnection,
-  AzureIoTHubDeviceOutput,
-} from '@o-industrial/common/packs/azure-iot';
 import { EaCActuatorErrorResponse, EaCActuatorResponse } from '@fathym/eac/steward/actuators';
-import {
-  EaCAzureIoTHubDataConnectionDetails,
-  EaCDataConnectionAsCode,
-  isEaCAzureIoTHubDataConnectionDetails,
-  isEaCDataConnectionAsCode,
-} from '@o-industrial/common/eac';
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
+import {
+  EaCAzureDockerSimulatorDetails,
+  EaCSimulatorAsCode,
+  isEaCAzureDockerSimulatorDetails,
+  isEaCSimulatorAsCode,
+} from '@o-industrial/common/eac';
+import {
+  AzureContainerAppJobDeployOutput,
+  AzureDockerSimulator,
+} from '@o-industrial/common/packs/azure-iot';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
 
 export default {
@@ -18,33 +18,32 @@ export default {
 
     try {
       const deployed = await State.Actuator.DeployValidated<
-        EaCDataConnectionAsCode<EaCAzureIoTHubDataConnectionDetails>,
-        EaCAzureIoTHubDataConnectionDetails,
-        AzureIoTHubDeviceOutput
+        EaCSimulatorAsCode<EaCAzureDockerSimulatorDetails>,
+        EaCAzureDockerSimulatorDetails,
+        AzureContainerAppJobDeployOutput
       >({
         req,
-        kind: 'Azure IoT Hub',
-        validateModel: isEaCDataConnectionAsCode,
-        validateDetails: isEaCAzureIoTHubDataConnectionDetails,
-        buildRuntime: AzureIoTHubDataConnection,
+        kind: 'AzureDocker',
+        validateModel: isEaCSimulatorAsCode,
+        validateDetails: isEaCAzureDockerSimulatorDetails,
+        buildRuntime: AzureDockerSimulator,
       });
 
-      // If DeployValidated returns a Response (i.e. a validation error), return it directly
       if (deployed instanceof Response) return deployed;
 
       const { lookup, model, result } = deployed;
 
       return Response.json({
-        Checks: [],
         Lookup: lookup,
-        Messages: {
-          Message: `Run completed for '${lookup}'`,
-        },
         Model: model,
         Output: result,
+        Checks: [],
+        Messages: {
+          Message: `Azure Docker simulator '${lookup}' deployed.`,
+        },
       } as EaCActuatorResponse);
     } catch (err) {
-      logger.error(`Actuator run failed`, err);
+      logger.error(`AzureDockerSimulator actuator failed`, err);
 
       return Response.json({
         HasError: true,

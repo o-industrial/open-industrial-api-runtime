@@ -12,6 +12,9 @@ export default {
       });
     }
 
+    // TODO(...): Delete Workspace Resource Group
+    // TODO(...): Delete all Workspace related Devices
+
     const deleteResp = await Steward.EaC.Delete(
       {
         EnterpriseLookup: WorkspaceLookup,
