@@ -1,7 +1,7 @@
 import type { EaCState } from '@fathym/eac-applications/steward/api';
 import { EverythingAsCodeOIWorkspace } from '@o-industrial/common/eac';
 import { OpenIndustrialJWTPayload } from '@o-industrial/common/types';
-import { ActuatorAPIState } from './ActuatorAPIState.ts';
+import { SOPAPIState } from './SOPAPIState.ts';
 // import { OpenIndustrialImpulses } from './OpenIndustrialImpulses.ts';
 
 /**
@@ -11,4 +11,4 @@ import { ActuatorAPIState } from './ActuatorAPIState.ts';
 export type OpenIndustrialAPIState =
   & OpenIndustrialJWTPayload
   & EaCState<EverythingAsCodeOIWorkspace>
-  & ActuatorAPIState;
+  & SOPAPIState;
