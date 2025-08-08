@@ -1,8 +1,13 @@
 import {
   AzureIoTHubDataConnection,
   AzureIoTHubDeviceOutput,
+  AzureIoTHubDeviceStatsOutput,
 } from '@o-industrial/common/packs/azure-iot';
-import { EaCActuatorErrorResponse, EaCActuatorResponse } from '@fathym/eac/steward/actuators';
+import {
+  EaCActuatorErrorResponse,
+  EaCActuatorRequest,
+  EaCActuatorResponse,
+} from '@fathym/eac/steward/actuators';
 import {
   EaCAzureIoTHubDataConnectionDetails,
   EaCDataConnectionAsCode,
@@ -17,12 +22,16 @@ export default {
     const logger = Runtime.Logs.Package;
 
     try {
-      const deployed = await State.Actuator.DeployValidated<
+      const actuatorRequest: EaCActuatorRequest = await req.json();
+
+      const deployed = await State.SOP.DeployValidated<
         EaCDataConnectionAsCode<EaCAzureIoTHubDataConnectionDetails>,
         EaCAzureIoTHubDataConnectionDetails,
         AzureIoTHubDeviceOutput
       >({
-        req,
+        lookup: actuatorRequest.Lookup,
+        model: actuatorRequest.Model,
+        eac: actuatorRequest.EaC,
         kind: 'Azure IoT Hub',
         validateModel: isEaCDataConnectionAsCode,
         validateDetails: isEaCAzureIoTHubDataConnectionDetails,

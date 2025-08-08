@@ -26,13 +26,17 @@
     "version": "deno run -A jsr:@fathym/common@0/build/version"
   },
   "imports": {
-    "@fathym/common": "jsr:@fathym/common@0.2.264",
-    "@fathym/eac": "jsr:@fathym/eac@0.2.112",
-    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.152",
-    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.17",
+    "@fathym/common": "jsr:@fathym/common@0.2.265",
+    "@fathym/eac": "jsr:@fathym/eac@0.2.113",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.154",
+    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.90",
+    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.19",
+    "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.21",
+    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.34",
     "@fathym/ioc": "jsr:@fathym/ioc@0",
     "@nats": "npm:nats@2.29.3",
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.83",
+    "@fathym/eac-azure/steward/plugins": "../../fathym-deno/eac-azure/src/steward/plugins/.exports.ts",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.136",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
@@ -63,8 +67,10 @@
 
     // "@o-industrial/common/runtimes": "../open-industrial-reference-architecture/src/runtimes/.exports.ts",
 
-    "@std/assert": "jsr:@std/assert@1.0.6",
-    "@std/log": "jsr:@std/log@0.224.6"
+    "preact": "npm:preact@10.20.1",
+    "preact/hooks": "npm:preact@10.20.1/hooks",
+    "@std/assert": "jsr:@std/assert@1.0.13",
+    "@std/log": "jsr:@std/log@0.224.14"
   },
   "exclude": [
     "**/_eac-runtime/*",

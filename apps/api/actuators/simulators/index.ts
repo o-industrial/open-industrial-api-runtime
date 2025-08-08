@@ -1,4 +1,8 @@
-import { EaCActuatorErrorResponse, EaCActuatorResponse } from '@fathym/eac/steward/actuators';
+import {
+  EaCActuatorErrorResponse,
+  EaCActuatorResponse,
+  EaCActuatorRequest,
+} from '@fathym/eac/steward/actuators';
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import {
   EaCAzureDockerSimulatorDetails,
@@ -17,12 +21,16 @@ export default {
     const logger = Runtime.Logs.Package;
 
     try {
-      const deployed = await State.Actuator.DeployValidated<
+      const actuatorRequest: EaCActuatorRequest = await req.json();
+
+      const deployed = await State.SOP.DeployValidated<
         EaCSimulatorAsCode<EaCAzureDockerSimulatorDetails>,
         EaCAzureDockerSimulatorDetails,
-        AzureContainerAppJobDeployOutput
+        AzureContainerAppJobDeployOutput[]
       >({
-        req,
+        lookup: actuatorRequest.Lookup,
+        model: actuatorRequest.Model,
+        eac: actuatorRequest.EaC,
         kind: 'AzureDocker',
         validateModel: isEaCSimulatorAsCode,
         validateDetails: isEaCAzureDockerSimulatorDetails,
@@ -43,7 +51,8 @@ export default {
         },
       } as EaCActuatorResponse);
     } catch (err) {
-      logger.error(`AzureDockerSimulator actuator failed`, err);
+      logger.error(`AzureDockerSimulator actuator failed`);
+      logger.error(err);
 
       return Response.json({
         HasError: true,
