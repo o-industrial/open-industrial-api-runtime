@@ -1,6 +1,6 @@
 import type { StringCodec } from '@nats';
 import type { NatsConnection } from '@nats';
-import type { Impulse } from '@o-industrial/common/sop';
+import type { Impulse } from '../../../open-industrial-reference-architecture/src/sop/Impulse.ts';
 
 /**
  * Grouped NATS capabilities made available through State.NATS.
