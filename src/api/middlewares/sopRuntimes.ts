@@ -4,7 +4,7 @@ import { StandardSOPExecutor } from './StandardSOPExecutor.ts';
 
 export const sopRuntimes = () =>
   ((_req, ctx) => {
-    const { IoC, Logs } = ctx.Runtime;
+    // const { IoC, Logs } = ctx.Runtime;
 
     // ctx.State.SOP = {
     //   async DeployValidated<

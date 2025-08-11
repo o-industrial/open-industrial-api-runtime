@@ -15,7 +15,7 @@ export class StandardSOPExecutor implements t {
     TDetails extends EaCVertexDetails,
     TDeploy,
     TServices extends Record<string, unknown> = Record<string, unknown>,
-    TSteps extends StepInvokerMap = StepInvokerMap
+    TSteps extends StepInvokerMap = StepInvokerMap,
   >(
     args: SOPValidateArgs<
       TAsCode,
@@ -25,7 +25,7 @@ export class StandardSOPExecutor implements t {
       any,
       TServices,
       TSteps
-    >
+    >,
   ): Promise<{ result: TDeploy; lookup: string; model: TAsCode } | Response> {
     return await this.#executeValidated('Deploy', args);
   }
@@ -35,7 +35,7 @@ export class StandardSOPExecutor implements t {
     TDetails extends EaCVertexDetails,
     TOutput,
     TServices extends Record<string, unknown> = Record<string, unknown>,
-    TSteps extends StepInvokerMap = StepInvokerMap
+    TSteps extends StepInvokerMap = StepInvokerMap,
   >(
     args: SOPValidateArgs<
       TAsCode,
@@ -45,7 +45,7 @@ export class StandardSOPExecutor implements t {
       any,
       TServices,
       TSteps
-    >
+    >,
   ): Promise<{ result: TOutput; lookup: string; model: TAsCode } | Response> {
     return await this.#executeValidated('Run', args);
   }
@@ -55,7 +55,7 @@ export class StandardSOPExecutor implements t {
     TDetails extends EaCVertexDetails,
     TStats,
     TServices extends Record<string, unknown> = Record<string, unknown>,
-    TSteps extends StepInvokerMap = StepInvokerMap
+    TSteps extends StepInvokerMap = StepInvokerMap,
   >(
     args: SOPValidateArgs<
       TAsCode,
@@ -65,7 +65,7 @@ export class StandardSOPExecutor implements t {
       TStats,
       TServices,
       TSteps
-    >
+    >,
   ): Promise<{ result: TStats; lookup: string; model: TAsCode } | Response> {
     return await this.#executeValidated('Stats', args);
   }
@@ -80,7 +80,7 @@ export class StandardSOPExecutor implements t {
     TDeploy = unknown,
     TStats = unknown,
     TServices extends Record<string, unknown> = Record<string, unknown>,
-    TSteps extends StepInvokerMap = StepInvokerMap
+    TSteps extends StepInvokerMap = StepInvokerMap,
   >(
     method: 'Deploy' | 'Run' | 'Stats',
     {
@@ -100,7 +100,7 @@ export class StandardSOPExecutor implements t {
       TStats,
       TServices,
       TSteps
-    >
+    >,
   ): Promise<{ result: TOutput; lookup: string; model: TAsCode } | Response> {
     const logger = this.ctx.Runtime.Logs.Package;
 

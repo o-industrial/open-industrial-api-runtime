@@ -1,15 +1,19 @@
-import { EaCActuatorErrorResponse, EaCActuatorRequest, EaCActuatorResponse } from '@fathym/eac/steward/actuators';
-import { EverythingAsCode } from '@fathym/eac';
-import { EaCLicenseAsCode, EaCLicenseStripeDetails, EverythingAsCodeLicensing } from '@fathym/eac-licensing';
-import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
+// deno-lint-ignore-file no-explicit-any
 import {
-  eacGetSecrets,
-  eacSetSecrets,
-  loadMainSecretClient,
-} from "jsr:@fathym/eac-azure@0.0.90/utils";
+  EaCActuatorErrorResponse,
+  EaCActuatorRequest,
+  EaCActuatorResponse,
+} from '@fathym/eac/steward/actuators';
+import { EverythingAsCode } from '@fathym/eac';
+import {
+  EaCLicenseAsCode,
+  EaCLicenseStripeDetails,
+  EverythingAsCodeLicensing,
+} from '@fathym/eac-licensing';
+import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
+import { eacSetSecrets, loadMainSecretClient } from 'jsr:@fathym/eac-azure@0.0.90/utils';
 
-import { Stripe } from "npm:stripe@17.6.0";
-
+import { Stripe } from 'npm:stripe@17.6.0';
 
 export default {
   async POST(req, ctx) {
@@ -22,8 +26,7 @@ export default {
         `Processing EaC commit ${handlerRequest.CommitID} Licenses processes for License ${handlerRequest.Lookup}`,
       );
 
-      const eac: EverythingAsCode & EverythingAsCodeLicensing =
-        handlerRequest.EaC;
+      const eac: EverythingAsCode & EverythingAsCodeLicensing = handlerRequest.EaC;
 
       const currentLicenses = eac.Licenses || {};
 
@@ -52,20 +55,16 @@ export default {
             await stripe.products.create({
               id: productId,
               name: eacPlan.Details?.Name
-                ? `${license.Details!.Name} - ${
-                  eacPlan.Details?.Name || productId
-                }`
-                : "undefined",
+                ? `${license.Details!.Name} - ${eacPlan.Details?.Name || productId}`
+                : 'undefined',
               description: eacPlan.Details?.Description || undefined,
               active: true,
-              type: "service",
+              type: 'service',
             });
           } else {
             await stripe.products.update(productId, {
               name: eacPlan.Details?.Name
-                ? `${license.Details!.Name} - ${
-                  eacPlan.Details?.Name || productId
-                }`
+                ? `${license.Details!.Name} - ${eacPlan.Details?.Name || productId}`
                 : undefined,
               description: eacPlan.Details?.Description || undefined,
               active: true,
@@ -146,9 +145,9 @@ export default {
 
         if (
           // isEaCLicenseStripeDetails(licDetails) &&
-          !licDetails.PublishableKey.startsWith("$secret:") ||
-          !licDetails.SecretKey.startsWith("$secret:") ||
-          !licDetails.WebhookSecret.startsWith("$secret:")
+          !licDetails.PublishableKey.startsWith('$secret:') ||
+          !licDetails.SecretKey.startsWith('$secret:') ||
+          !licDetails.WebhookSecret.startsWith('$secret:')
         ) {
           const secreted = await eacSetSecrets(secretClient, secretRoot, {
             PublishableKey: licDetails.PublishableKey,
@@ -172,7 +171,7 @@ export default {
         Model: license,
       } as EaCActuatorResponse);
     } catch (err) {
-      logger.Package.error("There was an error configuring the licenses", err);
+      logger.Package.error('There was an error configuring the licenses', err);
 
       return Response.json({
         HasError: true,

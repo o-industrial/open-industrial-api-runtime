@@ -11,7 +11,7 @@ export type SOPAPIState = {
       TDetails extends EaCVertexDetails,
       TDeploy,
       TServices extends Record<string, unknown> = Record<string, unknown>,
-      TSteps extends StepInvokerMap = StepInvokerMap
+      TSteps extends StepInvokerMap = StepInvokerMap,
     >(
       args: SOPValidateArgs<
         TAsCode,
@@ -21,7 +21,7 @@ export type SOPAPIState = {
         any,
         TServices,
         TSteps
-      >
+      >,
     ): Promise<{ result: TDeploy; lookup: string; model: TAsCode } | Response>;
 
     RunValidated<
@@ -29,7 +29,7 @@ export type SOPAPIState = {
       TDetails extends EaCVertexDetails,
       TOutput,
       TServices extends Record<string, unknown> = Record<string, unknown>,
-      TSteps extends StepInvokerMap = StepInvokerMap
+      TSteps extends StepInvokerMap = StepInvokerMap,
     >(
       args: SOPValidateArgs<
         TAsCode,
@@ -39,7 +39,7 @@ export type SOPAPIState = {
         any,
         TServices,
         TSteps
-      >
+      >,
     ): Promise<{ result: TOutput; lookup: string; model: TAsCode } | Response>;
 
     StatsValidated<
@@ -47,7 +47,7 @@ export type SOPAPIState = {
       TDetails extends EaCVertexDetails,
       TStats,
       TServices extends Record<string, unknown> = Record<string, unknown>,
-      TSteps extends StepInvokerMap = StepInvokerMap
+      TSteps extends StepInvokerMap = StepInvokerMap,
     >(
       args: SOPValidateArgs<
         TAsCode,
@@ -57,7 +57,7 @@ export type SOPAPIState = {
         TStats,
         TServices,
         TSteps
-      >
+      >,
     ): Promise<{ result: TStats; lookup: string; model: TAsCode } | Response>;
   };
 };

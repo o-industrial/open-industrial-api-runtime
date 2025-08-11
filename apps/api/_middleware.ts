@@ -11,7 +11,7 @@ export default [
 
     const jwt = await ctx.State.ParentSteward.EaC.JWT(
       ctx.State.WorkspaceLookup!,
-      ctx.State.Username!
+      ctx.State.Username!,
     );
 
     ctx.State.EaCJWT = jwt.Token;
@@ -24,5 +24,5 @@ export default [
 
     return ctx.Next();
   },
-  sopRuntimes()
+  sopRuntimes(),
 ] as EaCRuntimeHandlerSet<OpenIndustrialAPIState>;

@@ -1,7 +1,4 @@
-import {
-  EaCActuatorErrorResponse,
-  EaCActuatorResponse,
-} from '@fathym/eac/steward/actuators';
+import { EaCActuatorErrorResponse } from '@fathym/eac/steward/actuators';
 import {
   AzureDataExplorerOutput,
   AzureDataExplorerWarmQuery,
@@ -23,13 +20,11 @@ export default {
       const queryDetails: EaCWarmQueryDetails = await req.json();
 
       const model: EaCWarmQueryAsCode = {
-        Details: queryDetails?.Query
-          ? queryDetails
-          : {
-              Query: `Devices
+        Details: queryDetails?.Query ? queryDetails : {
+          Query: `Devices
 | order by EnqueuedTime desc
 | take 100`,
-            },
+        },
       };
 
       const deployed = await State.SOP.RunValidated<

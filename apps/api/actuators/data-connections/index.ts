@@ -1,7 +1,6 @@
 import {
   AzureIoTHubDataConnection,
   AzureIoTHubDeviceOutput,
-  AzureIoTHubDeviceStatsOutput,
 } from '@o-industrial/common/packs/azure-iot';
 import {
   EaCActuatorErrorResponse,

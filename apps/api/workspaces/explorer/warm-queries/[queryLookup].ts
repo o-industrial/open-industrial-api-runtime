@@ -1,7 +1,4 @@
-import {
-  EaCActuatorErrorResponse,
-  EaCActuatorResponse,
-} from '@fathym/eac/steward/actuators';
+import { EaCActuatorErrorResponse } from '@fathym/eac/steward/actuators';
 import {
   AzureDataExplorerOutput,
   AzureDataExplorerWarmQuery,
@@ -16,7 +13,7 @@ import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { OpenIndustrialAPIState } from '../../../../../src/state/OpenIndustrialAPIState.ts';
 
 export default {
-  async GET(req, { Runtime, State, Params }) {
+  async GET(_req, { Runtime, State, Params }) {
     const logger = Runtime.Logs.Package;
 
     try {

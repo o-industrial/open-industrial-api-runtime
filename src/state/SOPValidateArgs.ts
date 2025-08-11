@@ -1,13 +1,6 @@
-import type {
-  FluentRuntime,
-  FluentModuleBuilder,
-} from '@o-industrial/common/fluent';
+import type { FluentModuleBuilder, FluentRuntime } from '@o-industrial/common/fluent';
 
-import type {
-  EaCDetails,
-  EaCVertexDetails,
-  EverythingAsCode,
-} from '@fathym/eac';
+import type { EaCDetails, EaCVertexDetails, EverythingAsCode } from '@fathym/eac';
 import type { StepInvokerMap } from '@o-industrial/common/fluent/steps';
 import type { FluentContext } from '@o-industrial/common/fluent/types';
 
@@ -61,7 +54,7 @@ export type SOPValidateArgs<
     TStats,
     TServices,
     TSteps
-  >
+  >,
 > = {
   lookup: string;
   model: TAsCode;
