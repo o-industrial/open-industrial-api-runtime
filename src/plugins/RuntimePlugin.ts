@@ -38,21 +38,21 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
           Deno.env.get('AZURE_IOT_HUB_CONNECTION_STRING')!,
           Deno.env.get('OPEN_INDUSTRIAL_API_ROOT')!
         ),
-        new EaCLicensingAPIPlugin({
-          Application: {
-            JWTValidationModifier: {
-              Lookup: 'jwtValidate',
-            },
-          },
-        }),
-        new EaCLicensingStewardPlugin({
-          Application: {
-            Path: '/api/steward/licenses*',
-            JWTValidationModifier: {
-              Lookup: 'jwtValidate',
-            },
-          },
-        }),
+        // new EaCLicensingAPIPlugin({
+        //   Application: {
+        //     JWTValidationModifier: {
+        //       Lookup: 'jwtValidate',
+        //     },
+        //   },
+        // }),
+        // new EaCLicensingStewardPlugin({
+        //   Application: {
+        //     Path: '/api/steward/licenses*',
+        //     JWTValidationModifier: {
+        //       Lookup: 'jwtValidate',
+        //     },
+        //   },
+        // }),
       ],
       IoC: new IoCContainer(),
       EaC: {

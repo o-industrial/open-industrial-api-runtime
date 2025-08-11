@@ -32,7 +32,7 @@
     "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.90",
     "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.19",
     "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.21",
-    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.34",
+    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.35",
     "@fathym/ioc": "jsr:@fathym/ioc@0",
     "@nats": "npm:nats@2.29.3",
     "@o-industrial/common": "jsr:@o-industrial/common@0.0.95",
