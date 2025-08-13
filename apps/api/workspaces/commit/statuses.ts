@@ -11,7 +11,7 @@ export default {
 
       const eacSvc = await loadEaCStewardSvc(ctx.State.EaCJWT);
 
-      const stati = await eacSvc.Status.ListStati();
+      const stati = await eacSvc.Status.ListStati(20);
 
       return Response.json(stati);
     } catch {
