@@ -1,7 +1,7 @@
 import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
-import type { OpenIndustrialAPIState } from '../../src/state/OpenIndustrialAPIState.ts';
 import { loadEaCStewardSvc } from '@fathym/eac/steward/clients';
 import { sopRuntimes } from '../../src/api/middlewares/sopRuntimes.ts';
+import type { OpenIndustrialAPIState } from '../../src/state/OpenIndustrialAPIState.ts';
 
 export default [
   async (_req, ctx) => {

@@ -14,6 +14,7 @@ export default {
       { ...eac, ActuatorJWT: ctx.State.JWT },
       ctx.State.Username,
       60,
+      true,
     );
 
     const status = await waitForStatusWithFreshJwt(
