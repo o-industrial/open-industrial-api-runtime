@@ -37,7 +37,7 @@
     "@fathym/ioc": "jsr:@fathym/ioc@0",
     "@nats": "npm:nats@2.29.3",
     // "@fathym/eac-azure/steward/plugins": "../../fathym-deno/eac-azure/src/steward/plugins/.exports.ts",
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.190",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.196",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
