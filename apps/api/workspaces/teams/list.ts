@@ -11,7 +11,7 @@ export default {
       });
     }
 
-    const teamUsers = await Steward.EaC.ListUsers();
+    const teamUsers = await Steward.Users.List();
 
     return Response.json(teamUsers);
   },
