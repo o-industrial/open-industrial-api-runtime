@@ -5,7 +5,10 @@ import type { OpenIndustrialAPIState } from '../../src/state/OpenIndustrialAPISt
 
 export default [
   async (_req, ctx) => {
-    ctx.State.EaCKV = await ctx.Runtime.IoC.Resolve(Deno.Kv, 'oi');
+    ctx.State.OIKV = ctx.State.EaCKV = await ctx.Runtime.IoC.Resolve(
+      Deno.Kv,
+      'oi',
+    );
 
     ctx.State.ParentSteward = await loadEaCStewardSvc();
 
