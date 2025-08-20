@@ -1,11 +1,14 @@
 import type { EaCRuntimeHandlerSet } from '@fathym/eac/runtime/pipelines';
-import type { OpenIndustrialAPIState } from '../../src/state/OpenIndustrialAPIState.ts';
 import { loadEaCStewardSvc } from '@fathym/eac/steward/clients';
 import { sopRuntimes } from '../../src/api/middlewares/sopRuntimes.ts';
+import type { OpenIndustrialAPIState } from '../../src/state/OpenIndustrialAPIState.ts';
 
 export default [
   async (_req, ctx) => {
-    ctx.State.EaCKV = await ctx.Runtime.IoC.Resolve(Deno.Kv, 'oi');
+    ctx.State.OIKV = ctx.State.EaCKV = await ctx.Runtime.IoC.Resolve(
+      Deno.Kv,
+      'oi',
+    );
 
     ctx.State.ParentSteward = await loadEaCStewardSvc();
 

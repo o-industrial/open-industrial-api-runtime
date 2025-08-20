@@ -2,9 +2,10 @@ import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
 import { parseEverythingAsCodeOIWorkspace } from '@o-industrial/common/eac';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
+import { EaCRuntimeContext } from '@fathym/eac/runtime';
 
 export default {
-  async POST(req, ctx) {
+  async POST(req, ctx: EaCRuntimeContext<OpenIndustrialAPIState>) {
     const { Steward, WorkspaceLookup } = ctx.State;
 
     if (!Steward || !WorkspaceLookup) {
@@ -32,6 +33,7 @@ export default {
       const commitResp = await Steward.EaC.Commit(
         { ...wkspc, ActuatorJWT: ctx.State.JWT },
         30,
+        true,
       );
 
       status = await waitForStatus(

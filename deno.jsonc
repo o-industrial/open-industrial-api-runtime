@@ -26,18 +26,18 @@
     "version": "deno run -A jsr:@fathym/common@0/build/version"
   },
   "imports": {
-    "@fathym/common": "jsr:@fathym/common@0.2.265",
-    "@fathym/eac": "jsr:@fathym/eac@0.2.113",
-    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.157",
-    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.90",
-    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.19",
-    "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.21",
-    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.41",
+    "@fathym/common": "jsr:@fathym/common@0.2.266",
+    "@fathym/eac": "jsr:@fathym/eac@0.2.116",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.159",
+    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.102",
+    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.20",
+    "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.22",
+    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.46",
     // "@fathym/eac-licensing/steward/plugins": "../../fathym-deno/eac-licensing/src/steward/plugins/.exports.ts",
     "@fathym/ioc": "jsr:@fathym/ioc@0",
     "@nats": "npm:nats@2.29.3",
     // "@fathym/eac-azure/steward/plugins": "../../fathym-deno/eac-azure/src/steward/plugins/.exports.ts",
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.183",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.212",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
@@ -62,7 +62,7 @@
     // "@o-industrial/common/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
     // "@o-industrial/common/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
     // "@o-industrial/common/fluent/workspaces": "../open-industrial-reference-architecture/src/fluent/workspaces/.exports.ts",
-    
+
     // "@o-industrial/common/packs/azure-iot": "../open-industrial-reference-architecture/src/packs/azure-iot/.pack.ts",
     // "@o-industrial/common/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
 
@@ -82,30 +82,16 @@
     "!configs/*"
   ],
   "lint": {
-    "include": [
-      "apps/",
-      "configs/",
-      "src/",
-      "tests/"
-    ],
+    "include": ["apps/", "configs/", "src/", "tests/"],
     "exclude": [],
     "rules": {
-      "tags": [
-        "recommended"
-      ],
-      "include": [
-        "ban-untagged-todo"
-      ],
+      "tags": ["recommended"],
+      "include": ["ban-untagged-todo"],
       "exclude": []
     }
   },
   "fmt": {
-    "include": [
-      "apps/",
-      "configs/",
-      "src/",
-      "tests/"
-    ],
+    "include": ["apps/", "configs/", "src/", "tests/"],
     "exclude": [],
     "indentWidth": 2,
     "lineWidth": 100,
@@ -114,8 +100,6 @@
     "singleQuote": true,
     "useTabs": false
   },
-  "unstable": [
-    "kv"
-  ],
+  "unstable": ["kv"],
   "lock": false
 }
