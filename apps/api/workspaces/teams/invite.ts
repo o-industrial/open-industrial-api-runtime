@@ -18,39 +18,6 @@ export default {
 
     await Steward.Users.Invite(userRecord);
     
-    // const snapshot = await req.json();
-
-    // const { deletes, eac: wkspc } = snapshot;
-
-
-    // parseEverythingAsCodeOIWorkspace(wkspc);
-
-    // // Step 1: Apply deletions
-    // const deleteResp = await Steward.EaC.Delete(deletes, false, 30);
-    
-    // let status = await waitForStatus(
-    //   Steward,
-    //   WorkspaceLookup,
-    //   deleteResp.CommitID,
-    // );
-
-    // if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
-    //   const commitResp = await Steward.EaC.Commit(
-    //     { ...wkspc, ActuatorJWT: ctx.State.JWT },
-    //     30,
-    //   );
-
-    //   status = await waitForStatus(
-    //     Steward,
-    //     WorkspaceLookup,
-    //     commitResp.CommitID,
-    //   );
-
-    //   if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
-    //     return Response.json(status);
-    //   }
-    // }
-
     return Response.json(status, {
       status: 500,
     });
