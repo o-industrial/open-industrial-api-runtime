@@ -7,7 +7,7 @@ import { EaCUserRecord } from '../../../../../open-industrial-reference-architec
 export default {
   async POST(req, ctx) {
     const { Steward, WorkspaceLookup } = ctx.State;
-    debugger
+
     if (!Steward || !WorkspaceLookup) {
       return new Response('Missing steward context or enterprise info.', {
         status: 500,
