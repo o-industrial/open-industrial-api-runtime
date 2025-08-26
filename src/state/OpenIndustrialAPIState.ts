@@ -9,6 +9,9 @@ import { SOPAPIState } from './SOPAPIState.ts';
  * Includes identity and shared runtime interfaces for execution-aware routing.
  */
 export type OpenIndustrialAPIState =
+  & {
+    OIKV: Deno.Kv;
+  }
   & OpenIndustrialJWTPayload
   & EaCState<EverythingAsCodeOIWorkspace>
   & SOPAPIState;
