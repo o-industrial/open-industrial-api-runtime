@@ -4,7 +4,7 @@ import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIS
 export default {
   async GET(_req, ctx) {
     const { Steward, WorkspaceLookup } = ctx.State;
-
+    debugger
     if (!Steward || !WorkspaceLookup) {
       return new Response('Missing steward context or enterprise info.', {
         status: 500,
