@@ -1,13 +1,22 @@
 import { IoCContainer } from '@fathym/ioc';
 import { EverythingAsCode } from '@fathym/eac';
-import { EaCRuntimeConfig, EaCRuntimePluginConfig } from '@fathym/eac/runtime/config';
+import {
+  EaCRuntimeConfig,
+  EaCRuntimePluginConfig,
+} from '@fathym/eac/runtime/config';
 import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifiers';
-import { EaCAPIProcessor, EaCNATSProcessor } from '@fathym/eac-applications/processors';
+import {
+  EaCAPIProcessor,
+  EaCNATSProcessor,
+} from '@fathym/eac-applications/processors';
 import { EaCDenoKVDetails } from '@fathym/eac-deno-kv';
 import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
-import { EaCLicensingAPIPlugin } from '@fathym/eac-licensing/steward/plugins';
+import {
+  EaCLicensingAPIPlugin,
+  EaCLicensingStewardPlugin,
+} from '@fathym/eac-licensing/steward/plugins';
 import { OpenIndustrialGlobalDataIngestPlugin } from '@o-industrial/common/runtimes';
 import { DefaultOIAPIProcessorHandlerResolver } from './DefaultOIAPIProcessorHandlerResolver.ts';
 
@@ -20,15 +29,15 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
     > = {
       Name: RuntimePlugin.name,
       Plugins: [
-        new OpenIndustrialGlobalDataIngestPlugin(
-          'core',
-          Deno.env.get('NATS_SERVER')!,
-          Deno.env.get('NATS_TOKEN')!,
-          Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_CONNECTION_STRING')!,
-          Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_NAME')!,
-          Deno.env.get('AZURE_IOT_HUB_CONNECTION_STRING')!,
-          Deno.env.get('OPEN_INDUSTRIAL_API_ROOT')!,
-        ),
+        // new OpenIndustrialGlobalDataIngestPlugin(
+        //   'core',
+        //   Deno.env.get('NATS_SERVER')!,
+        //   Deno.env.get('NATS_TOKEN')!,
+        //   Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_CONNECTION_STRING')!,
+        //   Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_NAME')!,
+        //   Deno.env.get('AZURE_IOT_HUB_CONNECTION_STRING')!,
+        //   Deno.env.get('OPEN_INDUSTRIAL_API_ROOT')!
+        // ),
         new EaCLicensingAPIPlugin({
           Application: {
             JWTValidationModifier: {
@@ -125,7 +134,8 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             Details: {
               Type: 'DenoKV',
               Name: 'OI',
-              Description: 'The Deno KV database to use for open industrial web',
+              Description:
+                'The Deno KV database to use for open industrial web',
               DenoKVPath: Deno.env.get('EAC_DENO_KV_PATH') || undefined,
             } as EaCDenoKVDetails,
           },
@@ -133,8 +143,10 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             Details: {
               Type: 'DenoKV',
               Name: 'OI',
-              Description: 'The Deno KV database to use for open industrial web',
-              DenoKVPath: Deno.env.get('OPEN_INDUSTRIAL_DENO_KV_PATH') || undefined,
+              Description:
+                'The Deno KV database to use for open industrial web',
+              DenoKVPath:
+                Deno.env.get('OPEN_INDUSTRIAL_DENO_KV_PATH') || undefined,
             } as EaCDenoKVDetails,
           },
         },
