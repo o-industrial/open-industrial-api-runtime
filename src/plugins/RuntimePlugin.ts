@@ -1,23 +1,13 @@
 import { IoCContainer } from '@fathym/ioc';
 import { EverythingAsCode } from '@fathym/eac';
-import {
-  EaCRuntimeConfig,
-  EaCRuntimePluginConfig,
-} from '@fathym/eac/runtime/config';
+import { EaCRuntimeConfig, EaCRuntimePluginConfig } from '@fathym/eac/runtime/config';
 import { EaCRuntimePlugin } from '@fathym/eac/runtime/plugins';
 import { EverythingAsCodeApplications } from '@fathym/eac-applications';
 import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifiers';
-import {
-  EaCAPIProcessor,
-  EaCNATSProcessor,
-} from '@fathym/eac-applications/processors';
+import { EaCAPIProcessor, EaCNATSProcessor } from '@fathym/eac-applications/processors';
 import { EaCDenoKVDetails } from '@fathym/eac-deno-kv';
 import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
-import {
-  EaCLicensingAPIPlugin,
-  EaCLicensingStewardPlugin,
-} from '@fathym/eac-licensing/steward/plugins';
-import { OpenIndustrialGlobalDataIngestPlugin } from '@o-industrial/common/runtimes';
+import { EaCLicensingAPIPlugin } from '@fathym/eac-licensing/steward/plugins';
 import { DefaultOIAPIProcessorHandlerResolver } from './DefaultOIAPIProcessorHandlerResolver.ts';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
@@ -134,8 +124,7 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             Details: {
               Type: 'DenoKV',
               Name: 'OI',
-              Description:
-                'The Deno KV database to use for open industrial web',
+              Description: 'The Deno KV database to use for open industrial web',
               DenoKVPath: Deno.env.get('EAC_DENO_KV_PATH') || undefined,
             } as EaCDenoKVDetails,
           },
@@ -143,10 +132,8 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             Details: {
               Type: 'DenoKV',
               Name: 'OI',
-              Description:
-                'The Deno KV database to use for open industrial web',
-              DenoKVPath:
-                Deno.env.get('OPEN_INDUSTRIAL_DENO_KV_PATH') || undefined,
+              Description: 'The Deno KV database to use for open industrial web',
+              DenoKVPath: Deno.env.get('OPEN_INDUSTRIAL_DENO_KV_PATH') || undefined,
             } as EaCDenoKVDetails,
           },
         },
