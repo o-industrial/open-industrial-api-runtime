@@ -7,8 +7,10 @@ import { EaCJWTValidationModifierDetails } from '@fathym/eac-applications/modifi
 import { EaCAPIProcessor, EaCNATSProcessor } from '@fathym/eac-applications/processors';
 import { EaCDenoKVDetails } from '@fathym/eac-deno-kv';
 import { EaCLocalDistributedFileSystemDetails } from '@fathym/eac/dfs';
-import { EaCLicensingAPIPlugin } from '@fathym/eac-licensing/steward/plugins';
-import { OpenIndustrialGlobalDataIngestPlugin } from '@o-industrial/common/runtimes';
+import {
+  EaCLicensingAPIPlugin,
+  EaCLicensingStewardPlugin,
+} from '@fathym/eac-licensing/steward/plugins';
 import { DefaultOIAPIProcessorHandlerResolver } from './DefaultOIAPIProcessorHandlerResolver.ts';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
@@ -20,15 +22,6 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
     > = {
       Name: RuntimePlugin.name,
       Plugins: [
-        new OpenIndustrialGlobalDataIngestPlugin(
-          'core',
-          Deno.env.get('NATS_SERVER')!,
-          Deno.env.get('NATS_TOKEN')!,
-          Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_CONNECTION_STRING')!,
-          Deno.env.get('AZURE_IOT_HUB_EVENT_HUB_NAME')!,
-          Deno.env.get('AZURE_IOT_HUB_CONNECTION_STRING')!,
-          Deno.env.get('OPEN_INDUSTRIAL_API_ROOT')!,
-        ),
         new EaCLicensingAPIPlugin({
           Application: {
             JWTValidationModifier: {
@@ -36,14 +29,14 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
             },
           },
         }),
-        // new EaCLicensingStewardPlugin({
-        //   Application: {
-        //     Path: '/api/steward/licenses*',
-        //     JWTValidationModifier: {
-        //       Lookup: 'jwtValidate',
-        //     },
-        //   },
-        // }),
+        new EaCLicensingStewardPlugin({
+          Application: {
+            Path: '/api/steward/licenses*',
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
       ],
       IoC: new IoCContainer(),
       EaC: {
