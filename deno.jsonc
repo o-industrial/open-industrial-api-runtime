@@ -37,7 +37,7 @@
     "@fathym/ioc": "jsr:@fathym/ioc@0.0.14",
     "@nats": "npm:nats@2.29.3",
     // "@fathym/eac-azure/steward/plugins": "../../fathym-deno/eac-azure/src/steward/plugins/.exports.ts",
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.258",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.263",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
@@ -62,7 +62,7 @@
     // "@o-industrial/common/fluent/types": "../open-industrial-reference-architecture/src/fluent/types/.exports.ts",
     // "@o-industrial/common/fluent/utils": "../open-industrial-reference-architecture/src/fluent/utils/.exports.ts",
     // "@o-industrial/common/fluent/workspaces": "../open-industrial-reference-architecture/src/fluent/workspaces/.exports.ts",
-
+    
     // "@o-industrial/common/packs/azure-iot": "../open-industrial-reference-architecture/src/packs/azure-iot/.pack.ts",
     // "@o-industrial/common/packs/oi-core": "../open-industrial-reference-architecture/src/packs/oi-core/.pack.ts",
 
