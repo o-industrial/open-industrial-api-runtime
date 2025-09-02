@@ -1,15 +1,8 @@
+import { EverythingAsCode } from '@fathym/eac';
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
 import { EaCRuntimeContext } from '@fathym/eac/runtime';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
-
-function parseEaCFragment(eac: unknown) {
-  if (!eac || typeof eac !== 'object') {
-    throw new Error('Invalid EaC fragment.');
-  }
-
-  return eac;
-}
 
 export default {
   async POST(req, ctx: EaCRuntimeContext<OpenIndustrialAPIState>) {
@@ -21,20 +14,12 @@ export default {
       });
     }
 
-    let body: unknown;
+    let eac: EverythingAsCode;
 
     try {
-      body = await req.json();
+      eac = await req.json();
     } catch {
       return new Response('Invalid JSON body.', { status: 400 });
-    }
-
-    const { eac } = (body as { eac?: unknown }) ?? {};
-
-    try {
-      parseEaCFragment(eac);
-    } catch {
-      return new Response('Invalid EaC fragment.', { status: 400 });
     }
 
     try {
