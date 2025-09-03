@@ -72,10 +72,14 @@ export default {
     }
 
     try {
-      const deleteResp = await ParentSteward.EaC.Delete({
-        EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup,
-        ...deleteEaC,
-      });
+      const deleteResp = await ParentSteward.EaC.Delete(
+        {
+          EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup,
+          ...deleteEaC,
+        },
+        false,
+        60,
+      );
 
       const status = await waitForStatus(
         ParentSteward,
