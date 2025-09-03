@@ -24,7 +24,11 @@ export default {
 
     try {
       const commitResp = await ParentSteward.EaC.Commit(
-        { ...eac, ActuatorJWT: JWT },
+        {
+          EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup,
+          ...eac,
+          ActuatorJWT: JWT,
+        },
         30,
         true,
       );
@@ -68,7 +72,10 @@ export default {
     }
 
     try {
-      const deleteResp = await ParentSteward.EaC.Delete(deleteEaC);
+      const deleteResp = await ParentSteward.EaC.Delete({
+        EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup,
+        ...deleteEaC,
+      });
 
       const status = await waitForStatus(
         ParentSteward,

@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { EaCActuatorErrorResponse } from '@fathym/eac/steward/actuators';
 import {
   AzureDataExplorerOutput,
@@ -103,7 +104,7 @@ export default {
       const { result } = deployed;
 
       return Response.json(result);
-    } catch (err: unknown) {
+    } catch (err) {
       logger.error(`AzureDataExplorerWarmQuery actuator failed`, err);
 
       // Prefer axios-style error payloads if present; otherwise fall back to the error itself
