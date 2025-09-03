@@ -3,6 +3,7 @@ import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
 import { EaCRuntimeContext } from '@fathym/eac/runtime';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
+import { NullableArrayOrObject } from '@fathym/common';
 
 export default {
   async POST(req, ctx: EaCRuntimeContext<OpenIndustrialAPIState>) {
@@ -63,23 +64,19 @@ export default {
       });
     }
 
-    let deleteEaC;
+    let deleteEaC: NullableArrayOrObject<EverythingAsCode>;
 
     try {
-      deleteEaC = await req.json();
+      deleteEaC = {
+        EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup,
+        ...(await req.json()),
+      };
     } catch {
       return new Response('Invalid JSON body.', { status: 400 });
     }
 
     try {
-      const deleteResp = await ParentSteward.EaC.Delete(
-        {
-          EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup,
-          ...deleteEaC,
-        },
-        false,
-        60,
-      );
+      const deleteResp = await ParentSteward.EaC.Delete(deleteEaC, false, 60);
 
       const status = await waitForStatus(
         ParentSteward,
