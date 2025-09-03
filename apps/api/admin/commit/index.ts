@@ -49,4 +49,43 @@ export default {
       );
     }
   },
+
+  async DELETE(req, ctx: EaCRuntimeContext<OpenIndustrialAPIState>) {
+    const { ParentSteward, EnterpriseLookup } = ctx.State;
+
+    if (!ParentSteward || !EnterpriseLookup) {
+      return new Response('Missing steward context or enterprise info.', {
+        status: 500,
+      });
+    }
+
+    let deleteEaC;
+
+    try {
+      deleteEaC = await req.json();
+    } catch {
+      return new Response('Invalid JSON body.', { status: 400 });
+    }
+
+    try {
+      const deleteResp = await ParentSteward.EaC.Delete(deleteEaC);
+
+      const status = await waitForStatus(
+        ParentSteward,
+        EnterpriseLookup,
+        deleteResp.CommitID,
+      );
+
+      if (status.Processing === EaCStatusProcessingTypes.COMPLETE) {
+        return Response.json({ status });
+      }
+
+      return Response.json({ status }, { status: 500 });
+    } catch (err) {
+      return new Response(
+        err instanceof Error ? err.message : 'Delete failed.',
+        { status: 500 },
+      );
+    }
+  },
 } as EaCRuntimeHandlers<OpenIndustrialAPIState>;
