@@ -1,15 +1,14 @@
 import { EverythingAsCode } from '@fathym/eac';
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
-import { EaCRuntimeContext } from '@fathym/eac/runtime';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
 import { NullableArrayOrObject } from '@fathym/common';
 
 export default {
-  async POST(req, ctx: EaCRuntimeContext<OpenIndustrialAPIState>) {
-    const { ParentSteward, JWT, EnterpriseLookup } = ctx.State;
+  async POST(req, ctx) {
+    const { ParentSteward, JWT } = ctx.State;
 
-    if (!ParentSteward || !JWT || !EnterpriseLookup) {
+    if (!ParentSteward || !JWT) {
       return new Response('Missing steward context or enterprise info.', {
         status: 500,
       });
@@ -36,7 +35,7 @@ export default {
 
       const status = await waitForStatus(
         ParentSteward,
-        EnterpriseLookup,
+        commitResp.EnterpriseLookup,
         commitResp.CommitID,
       );
 
@@ -55,10 +54,10 @@ export default {
     }
   },
 
-  async DELETE(req, ctx: EaCRuntimeContext<OpenIndustrialAPIState>) {
-    const { ParentSteward, EnterpriseLookup } = ctx.State;
+  async DELETE(req, ctx) {
+    const { ParentSteward } = ctx.State;
 
-    if (!ParentSteward || !EnterpriseLookup) {
+    if (!ParentSteward) {
       return new Response('Missing steward context or enterprise info.', {
         status: 500,
       });
@@ -80,7 +79,7 @@ export default {
 
       const status = await waitForStatus(
         ParentSteward,
-        EnterpriseLookup,
+        deleteResp.EnterpriseLookup,
         deleteResp.CommitID,
       );
 
