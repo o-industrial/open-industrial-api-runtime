@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { assert, assertEquals } from '../../../tests.deps.ts';
 import handlers from '../../../../apps/api/index.ts';
 

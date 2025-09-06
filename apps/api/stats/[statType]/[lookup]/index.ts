@@ -8,7 +8,7 @@ import {
 } from '@o-industrial/common/eac';
 import { RuntimeStats } from '@o-industrial/common/types';
 import { AzureIoTHubDataConnection } from '@o-industrial/common/packs/azure-iot';
-import { DataConnectionStats } from '@o-industrial/common/packs/oi-core';
+import { DataConnectionStats } from '@o-industrial/common/fluent/connections';
 import type { OpenIndustrialAPIState } from '../../../../../src/state/OpenIndustrialAPIState.ts';
 
 export default {

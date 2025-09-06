@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any require-await
 import { assert, assertEquals } from '../../tests.deps.ts';
 import { StandardSOPExecutor } from '../../../src/api/middlewares/StandardSOPExecutor.ts';
 import { IoCContainer } from '@fathym/ioc';
@@ -47,27 +48,30 @@ Deno.test('StandardSOPExecutor - DeployValidated success path', async () => {
   assertEquals((res as any).result, { deployed: true });
 });
 
-Deno.test('StandardSOPExecutor - invalid model returns error response', async () => {
-  const ctx: any = {
-    Runtime: {
-      Logs: { Package: { debug: (_: string) => {} } },
-      IoC: new IoCContainer(),
-    },
-    State: { EaC: {} },
-  };
+Deno.test(
+  'StandardSOPExecutor - invalid model returns error response',
+  async () => {
+    const ctx: any = {
+      Runtime: {
+        Logs: { Package: { debug: (_: string) => {} } },
+        IoC: new IoCContainer(),
+      },
+      State: { EaC: {} },
+    };
 
-  const exec = new StandardSOPExecutor(ctx);
+    const exec = new StandardSOPExecutor(ctx);
 
-  const res = await exec.RunValidated({
-    lookup: 'bad',
-    kind: 'TestKind',
-    model: {},
-    validateModel: () => false,
-    validateDetails: () => true,
-    buildRuntime: () => ({ Build: () => ({ Runtime: class {} }) }),
-  } as any);
+    const res = await exec.RunValidated({
+      lookup: 'bad',
+      kind: 'TestKind',
+      model: {},
+      validateModel: () => false,
+      validateDetails: () => true,
+      buildRuntime: () => ({ Build: () => ({ Runtime: class {} }) }),
+    } as any);
 
-  assert(res instanceof Response);
-  const body = await (res as Response).json();
-  assertEquals(body.HasError, true);
-});
+    assert(res instanceof Response);
+    const body = await (res as Response).json();
+    assertEquals(body.HasError, true);
+  },
+);

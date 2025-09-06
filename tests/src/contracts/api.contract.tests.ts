@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { assertEquals } from '../../tests.deps.ts';
 import { z } from 'npm:zod@3.23.8';
 import handlers from '../../../apps/api/index.ts';
@@ -11,4 +12,3 @@ Deno.test('GET /api contract: returns object (EaC projection)', async () => {
   const body = await res.json();
   AnyObject.parse(body);
 });
-
