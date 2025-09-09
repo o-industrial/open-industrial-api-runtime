@@ -1,5 +1,6 @@
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
+import { EaCUserRecord } from '@fathym/eac';
 
 export default {
   async POST(req, ctx) {
@@ -11,7 +12,7 @@ export default {
       });
     }
 
-    const userRecord = await req.json();
+    const userRecord: EaCUserRecord = await req.json();
 
     await Steward.Users.Invite(userRecord);
 
