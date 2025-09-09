@@ -3,6 +3,7 @@ import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
 import { NullableArrayOrObject } from '@fathym/common';
+import { loadOpenIndustrialRootActuators } from '../../../../configs/oi-root-actuators.config.ts';
 
 export default {
   async POST(req, ctx) {
@@ -27,6 +28,7 @@ export default {
         {
           EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup,
           ...eac,
+          Actuators: loadOpenIndustrialRootActuators(),
           ActuatorJWT: JWT,
         },
         30,
