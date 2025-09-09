@@ -43,4 +43,3 @@ export default {
     return new Response(null, { status: 204 });
   },
 } as EaCRuntimeHandlers<OpenIndustrialAPIState>;
-

@@ -24,4 +24,3 @@ export default {
     return Response.json(ctx.State.EaC);
   },
 } as EaCRuntimeHandlers<OpenIndustrialAPIState>;
-

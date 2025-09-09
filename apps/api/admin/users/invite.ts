@@ -26,7 +26,9 @@ export default {
       fd.forEach((v, k) => (payload[k] = String(v)));
     }
 
-    const username = String(payload['Username'] ?? payload['Email'] ?? '').trim();
+    const username = String(
+      payload['Username'] ?? payload['Email'] ?? '',
+    ).trim();
     if (!username) {
       return new Response('Username (email) is required.', { status: 400 });
     }
@@ -51,7 +53,7 @@ export default {
     };
 
     try {
-      const result = await ParentSteward.Users.Invite(record as any);
+      const result = await ParentSteward.Users.Invite(record);
       return Response.json(result ?? { ok: true });
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);

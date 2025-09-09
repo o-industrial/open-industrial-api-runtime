@@ -23,10 +23,10 @@ export default {
 
     const filtered = q
       ? users.filter((e) =>
-          (e.Username ?? e.EnterpriseName ?? '')
-            .toLowerCase()
-            .includes(q.toLowerCase())
-        )
+        (e.Username ?? e.EnterpriseName ?? '')
+          .toLowerCase()
+          .includes(q.toLowerCase())
+      )
       : users;
 
     return Response.json(filtered);
