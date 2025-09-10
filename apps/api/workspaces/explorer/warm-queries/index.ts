@@ -105,7 +105,8 @@ export default {
 
       return Response.json(result);
     } catch (err) {
-      logger.error(`AzureDataExplorerWarmQuery actuator failed`, err);
+      logger.error(`AzureDataExplorerWarmQuery actuator failed`);
+      logger.error(err);
 
       // Prefer axios-style error payloads if present; otherwise fall back to the error itself
       const payload = (err as any)?.response?.data?.error ??

@@ -23,7 +23,7 @@ export default {
 
       if (code !== 0) {
         const errorText = new TextDecoder().decode(stderr);
-        console.error(`❌ Failed to bundle pack [${key}]:`, errorText);
+        console.error(`❌ Failed to bundle pack [${key}]: ${errorText}`);
         return new Response(`Error bundling pack: ${errorText}`, { status: 500 });
       }
 

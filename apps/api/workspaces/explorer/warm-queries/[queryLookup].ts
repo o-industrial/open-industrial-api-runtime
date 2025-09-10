@@ -40,7 +40,8 @@ export default {
 
       return Response.json(result);
     } catch (err) {
-      logger.error(`AzureDataExplorerWarmQuery actuator failed`, err);
+      logger.error(`AzureDataExplorerWarmQuery actuator failed`);
+      logger.error(err);
 
       return Response.json({
         HasError: true,

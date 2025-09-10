@@ -171,7 +171,8 @@ export default {
         Model: license,
       } as EaCActuatorResponse);
     } catch (err) {
-      logger.Package.error('There was an error configuring the licenses', err);
+      logger.Package.error('There was an error configuring the licenses');
+      logger.Package.error(err);
 
       return Response.json({
         HasError: true,

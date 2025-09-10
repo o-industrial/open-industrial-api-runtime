@@ -52,7 +52,8 @@ export default {
         Output: result,
       } as EaCActuatorResponse);
     } catch (err) {
-      logger.error(`Actuator run failed`, err);
+      logger.error(`Actuator run failed`);
+      logger.error(err);
 
       return Response.json({
         HasError: true,

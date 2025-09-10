@@ -11,7 +11,7 @@ const path = args.get('path') ?? 'cov/lcov.info';
 const minLines = Number(args.get('minLines') ?? Deno.env.get('COVERAGE_LINES') ?? 80);
 
 const text = await Deno.readTextFile(path).catch((err) => {
-  console.error(`Failed to read LCOV file at ${path}:`, err.message);
+  console.error(`Failed to read LCOV file at ${path}: ${err.message}`);
   Deno.exit(2);
 });
 
