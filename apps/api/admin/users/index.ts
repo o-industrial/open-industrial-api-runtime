@@ -25,7 +25,7 @@ export default {
       ? users.filter((e) =>
         (e.Username ?? e.EnterpriseName ?? '')
           .toLowerCase()
-          .includes(q.toLowerCase())
+          .includes(q)
       )
       : users;
 

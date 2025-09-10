@@ -31,8 +31,9 @@
   },
   "imports": {
     "@fathym/common": "jsr:@fathym/common@0.2.266",
-    "@fathym/eac": "jsr:@fathym/eac@0.2.119",
-    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.186",
+    "@fathym/eac": "jsr:@fathym/eac@0.2.120",
+    // "@fathym/eac/steward/clients": "../eac/src/steward/clients/.exports.ts",
+    "@fathym/eac-applications": "jsr:@fathym/eac-applications@0.0.187",
     // "@fathym/eac-applications": "../eac-applications/src/applications/.exports.ts",
     // "@fathym/eac-applications/modifiers": "../eac-applications/src/applications/modifiers/.exports.ts",
     // "@fathym/eac-applications/preact": "../eac-applications/src/preact/.exports.ts",
@@ -48,18 +49,18 @@
     // "@fathym/eac-applications/steward/api": "../eac-applications/src/steward/api/.exports.ts",
     // "@fathym/eac-applications/steward/plugins": "../eac-applications/src/steward/plugins/.exports.ts",
     // "@fathym/eac-applications/utils": "../eac-applications/src/utils/.exports.ts",
-    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.105",
+    "@fathym/eac-azure": "jsr:@fathym/eac-azure@0.0.106",
     // "@fathym/eac-azure/steward/plugins": "../../fathym-deno/eac-azure/src/steward/plugins/.exports.ts",
-    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.21",
-    "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.23",
-    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.54",
+    "@fathym/eac-deno-kv": "jsr:@fathym/eac-deno-kv@0.0.22",
+    "@fathym/eac-iot": "jsr:@fathym/eac-iot@0.0.24",
+    "@fathym/eac-licensing": "jsr:@fathym/eac-licensing@0.0.55",
     // "@fathym/eac-licensing": "../eac-licensing/src/licensing/.exports.ts",
     // "@fathym/eac-licensing/clients": "../eac-licensing/src/clients/.exports.ts",
     // "@fathym/eac-licensing/steward/api": "../eac-licensing/src/steward/api/.exports.ts",
     // "@fathym/eac-licensing/steward/plugins": "../eac-licensing/src/steward/plugins/.exports.ts",
     "@fathym/ioc": "jsr:@fathym/ioc@0.0.14",
     "@nats": "npm:nats@2.29.3",
-    "@o-industrial/common": "jsr:@o-industrial/common@0.0.288",
+    "@o-industrial/common": "jsr:@o-industrial/common@0.0.289",
     // "@o-industrial/common/atomic/atoms": "../open-industrial-reference-architecture/atomic/atoms/.exports.ts",
     // "@o-industrial/common/atomic/icons": "../open-industrial-reference-architecture/build/iconset/icons/.exports.ts",
     // "@o-industrial/common/atomic/molecules": "../open-industrial-reference-architecture/atomic/molecules/.exports.ts",
@@ -126,6 +127,5 @@
   "lock": false,
   "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "preact" }
 }
-
 
 
