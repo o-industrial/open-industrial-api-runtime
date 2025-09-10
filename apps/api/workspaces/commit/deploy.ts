@@ -2,8 +2,6 @@ import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { EaCStatusProcessingTypes, waitForStatus } from '@fathym/eac/steward/status';
 import { OpenIndustrialAPIState } from '../../../../src/state/OpenIndustrialAPIState.ts';
 import { EaCRuntimeContext } from '@fathym/eac/runtime';
-import { loadJwtConfig } from '@fathym/common';
-import { loadEaCLicensingSvc } from '@fathym/eac-licensing/clients';
 
 export default {
   async POST(_req, ctx: EaCRuntimeContext<OpenIndustrialAPIState>) {
@@ -15,22 +13,7 @@ export default {
       });
     }
 
-    //  TODO(AI): Cache this so we don't refresh every request?
-    const parentJwt = await loadJwtConfig().Create({
-      EnterpriseLookup: ctx.Runtime.EaC.EnterpriseLookup!,
-      WorkspaceLookup: ctx.Runtime.EaC.EnterpriseLookup!,
-      Username: ctx.State.Username,
-    });
-
-    const licSvc = await loadEaCLicensingSvc(parentJwt);
-
-    const licRes = await licSvc.License.Get(
-      ctx.Runtime.EaC.EnterpriseLookup!,
-      ctx.State.Username,
-      'o-industrial',
-    );
-
-    if (licRes.Active) {
+    if (ctx.State.AccessRights.includes('Workspace.Deploy')) {
       const commitResp = await Steward.EaC.Commit(
         {
           ...(ctx.State.EaC ?? {}),
@@ -51,9 +34,12 @@ export default {
         return Response.json(status);
       }
     } else {
-      return Response.json(status, {
-        status: 500,
-      });
+      return Response.json(
+        { Acticve: false },
+        {
+          status: 500,
+        },
+      );
     }
   },
 } as EaCRuntimeHandlers<OpenIndustrialAPIState>;
