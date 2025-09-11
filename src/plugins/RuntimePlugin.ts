@@ -12,6 +12,10 @@ import {
   EaCLicensingStewardPlugin,
 } from '@fathym/eac-licensing/steward/plugins';
 import { DefaultOIAPIProcessorHandlerResolver } from './DefaultOIAPIProcessorHandlerResolver.ts';
+import {
+  EaCAzureAPIPlugin,
+  EaCAzureCloudsStewardPlugin,
+} from '@fathym/eac-azure/steward/plugins';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
   constructor() {}
@@ -32,6 +36,24 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
         new EaCLicensingStewardPlugin({
           Application: {
             Path: '/api/steward/licenses*',
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
+        // Azure utility APIs (subscriptions, locations, billing, etc.)
+        new EaCAzureAPIPlugin({
+          Application: {
+            Path: '/api/azure*',
+            JWTValidationModifier: {
+              Lookup: 'jwtValidate',
+            },
+          },
+        }),
+        // Azure-specific steward handlers for cloud lifecycle/finalization
+        new EaCAzureCloudsStewardPlugin({
+          Application: {
+            Path: '/api/steward/clouds/azure*',
             JWTValidationModifier: {
               Lookup: 'jwtValidate',
             },
