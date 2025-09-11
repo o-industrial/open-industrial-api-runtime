@@ -12,10 +12,7 @@ import {
   EaCLicensingStewardPlugin,
 } from '@fathym/eac-licensing/steward/plugins';
 import { DefaultOIAPIProcessorHandlerResolver } from './DefaultOIAPIProcessorHandlerResolver.ts';
-import {
-  EaCAzureAPIPlugin,
-  EaCAzureCloudsStewardPlugin,
-} from '@fathym/eac-azure/steward/plugins';
+import { EaCAzureAPIPlugin, EaCAzureCloudsStewardPlugin } from '@fathym/eac-azure/steward/plugins';
 
 export default class RuntimePlugin implements EaCRuntimePlugin {
   constructor() {}

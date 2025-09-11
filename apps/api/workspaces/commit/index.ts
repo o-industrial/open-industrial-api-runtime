@@ -18,6 +18,9 @@ export default {
 
     const { deletes, eac: wkspc } = snapshot;
 
+    const forceActuators = ctx.Runtime.URLMatch.SearchParams?.get('forceActuators') === 'true' ||
+      false;
+
     parseEverythingAsCodeOIWorkspace(wkspc);
 
     // Step 1: Apply deletions
@@ -33,7 +36,7 @@ export default {
       const commitResp = await Steward.EaC.Commit(
         { ...wkspc, ActuatorJWT: ctx.State.JWT },
         30,
-        true,
+        !forceActuators,
       );
 
       status = await waitForStatus(
