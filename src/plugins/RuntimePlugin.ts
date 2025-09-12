@@ -133,6 +133,14 @@ export default class RuntimePlugin implements EaCRuntimePlugin {
           },
         },
         DenoKVs: {
+          cache: {
+            Details: {
+              Type: 'DenoKV',
+              Name: 'OI',
+              Description: 'The Deno KV database to use for open industrial web',
+              DenoKVPath: Deno.env.get('CACHE_DENO_KV_PATH') || undefined,
+            } as EaCDenoKVDetails,
+          },
           eac: {
             Details: {
               Type: 'DenoKV',
