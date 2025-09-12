@@ -10,6 +10,13 @@ export default [
       'oi',
     );
 
+    // Optional cache KV for faster cross-request retrieval of computed data
+    try {
+      ctx.State.CacheKV = await ctx.Runtime.IoC.Resolve(Deno.Kv, 'cache');
+    } catch {
+      // Cache KV not configured; endpoints should handle undefined
+    }
+
     ctx.State.ParentSteward = await loadEaCStewardSvc();
 
     const jwt = await ctx.State.ParentSteward.EaC.JWT(

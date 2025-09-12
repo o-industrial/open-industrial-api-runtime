@@ -11,6 +11,7 @@ import { SOPAPIState } from './SOPAPIState.ts';
 export type OpenIndustrialAPIState =
   & {
     OIKV: Deno.Kv;
+    CacheKV?: Deno.Kv;
   }
   & OpenIndustrialJWTPayload
   & EaCState<EverythingAsCodeOIWorkspace>
