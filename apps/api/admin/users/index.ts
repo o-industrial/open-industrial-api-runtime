@@ -13,7 +13,7 @@ export default {
    *   /api/admin/users       – list all enterprises
    *   /api/admin/users?q=acme – list enterprises whose name contains "acme"
    */
-  async GET(req: Request, ctx: { State: OpenIndustrialAPIState }) {
+  async GET(req: Request, ctx) {
     const users = await ctx.State.ParentSteward!.Users.List();
 
     // Apply a name filter if 'q' is supplied.

@@ -8,7 +8,7 @@ export default {
    * Returns the current Everything-as-Code for the active workspace by
    * asking the steward, ensuring the latest committed state is returned.
    */
-  async GET(_req: Request, ctx: { State: OpenIndustrialAPIState }) {
+  async GET(_req: Request, ctx) {
     // Middleware already tries to populate ctx.State.EaC via the steward.
     // Fall back to an explicit steward call if needed.
     if (!ctx.State.EaC && ctx.State.ParentSteward) {
