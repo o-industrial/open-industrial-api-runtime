@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 // apps/api/admin/workspaces/index.ts
 import type { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { loadEaCStewardSvc } from '@fathym/eac/steward/clients';
@@ -29,7 +30,7 @@ export default {
           const users = await steward.Users.List();
           const owner = users.find((u: any) => u?.Owner === true);
           if (owner) {
-            (eac as any).$Owner = owner;
+            eac.$Owner = owner;
           }
         } catch {
           // Best-effort enrichment; ignore failures
@@ -42,10 +43,14 @@ export default {
     const q = url.searchParams.get('q')?.toLowerCase() ?? '';
     const filtered = q
       ? enriched.filter((e) => {
-          const name = (e.Details?.Name ?? e.EnterpriseLookup ?? '').toLowerCase();
-          const owner = String((e as any).$Owner?.Username ?? '').toLowerCase();
-          return name.includes(q) || owner.includes(q);
-        })
+        const name = (
+          e.Details?.Name ??
+            e.EnterpriseLookup ??
+            ''
+        ).toLowerCase();
+        const owner = String(e.$Owner?.Username ?? '').toLowerCase();
+        return name.includes(q) || owner.includes(q);
+      })
       : enriched;
 
     return Response.json(filtered);

@@ -1,5 +1,6 @@
 import type { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import type { OpenIndustrialAPIState } from '../../../../../../src/state/OpenIndustrialAPIState.ts';
+import { EverythingAsCode } from '@fathym/eac';
 
 export default {
   /**
@@ -26,7 +27,7 @@ export default {
 
     const mapped = records
       .map((r) => {
-        const eac: any = {
+        const eac: EverythingAsCode = {
           EnterpriseLookup: r.EnterpriseLookup,
           ParentEnterpriseLookup: r.ParentEnterpriseLookup,
           Details: { Name: r.EnterpriseName },
@@ -37,13 +38,12 @@ export default {
       .filter((e) =>
         q
           ? ((e.Details?.Name ?? e.EnterpriseLookup ?? '') as string)
-              .toLowerCase()
-              .includes(q) ||
+            .toLowerCase()
+            .includes(q) ||
             String(e.$Owner?.Username ?? '').toLowerCase().includes(q)
-          : true,
+          : true
       );
 
     return Response.json(mapped);
   },
 } as EaCRuntimeHandlers<OpenIndustrialAPIState>;
-

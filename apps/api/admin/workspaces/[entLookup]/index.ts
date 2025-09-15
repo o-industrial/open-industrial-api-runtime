@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import type { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
 import { loadEaCStewardSvc } from '@fathym/eac/steward/clients';
 import type { OpenIndustrialAPIState } from '../../../../../src/state/OpenIndustrialAPIState.ts';
@@ -33,7 +34,7 @@ export default {
       const users = await steward.Users.List();
       const owner = users.find((u: any) => u?.Owner === true);
       if (owner) {
-        (eac as any).$Owner = owner;
+        eac.$Owner = owner;
       }
     } catch {
       // Ignore user listing errors; still return EAC
@@ -42,4 +43,3 @@ export default {
     return Response.json(eac);
   },
 } as EaCRuntimeHandlers<OpenIndustrialAPIState>;
-
