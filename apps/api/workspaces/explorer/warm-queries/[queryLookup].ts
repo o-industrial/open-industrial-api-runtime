@@ -19,7 +19,35 @@ export default {
     try {
       const queryLookup = Params.queryLookup!;
 
-      const model = State.EaC!.WarmQueries![queryLookup];
+      const model = State.EaC!.WarmQueries?.[queryLookup];
+
+      if (!model) {
+        return Response.json(
+          {
+            HasError: true,
+            Messages: {
+              Error:
+                `Warm query "${queryLookup}" was not found. Save it in your workspace before invoking the API.`,
+            },
+          } as EaCActuatorErrorResponse,
+          { status: 404 },
+        );
+      }
+
+      const queryText = model.Details?.Query;
+
+      if (typeof queryText !== 'string' || !queryText.trim()) {
+        return Response.json(
+          {
+            HasError: true,
+            Messages: {
+              Error:
+                `Warm query "${queryLookup}" does not have any query text yet. Save a query body before invoking the API.`,
+            },
+          } as EaCActuatorErrorResponse,
+          { status: 400 },
+        );
+      }
 
       const deployed = await State.SOP.RunValidated<
         EaCWarmQueryAsCode,
