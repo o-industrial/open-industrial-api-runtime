@@ -11,7 +11,7 @@ import {
   EverythingAsCodeLicensing,
 } from '@fathym/eac-licensing';
 import { EaCRuntimeHandlers } from '@fathym/eac/runtime/pipelines';
-import { eacSetSecrets, loadMainSecretClient } from 'jsr:@fathym/eac-azure@0.0.109/utils';
+import { eacSetSecrets, loadMainSecretClient } from '@fathym/eac-azure/utils';
 
 import { Stripe } from 'npm:stripe@17.6.0';
 
