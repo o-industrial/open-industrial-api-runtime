@@ -37,4 +37,3 @@ if (pct + 1e-6 < minLines) {
   console.error(`Coverage threshold not met (have ${pctStr}%, need >= ${minLines}%).`);
   Deno.exit(1);
 }
-
